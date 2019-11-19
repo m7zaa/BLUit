@@ -1,44 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Post extends  React.Component {
-  constructor(props) {
-    super(props);
+function Post (props) {
+  // constructor(props) {
+  //   super(props);
   
-    this.state = {
-      count: 0,
-    };
-    this.handleUpVoteClick = this.handleUpVoteClick.bind(this);
-    this.handleDownVoteClick = this.handleDownVoteClick.bind(this);
+  //   this.state = {
+  //     count: 0,
+  //   };
+  //   this.handleUpVoteClick = this.handleUpVoteClick.bind(this);
+  //   this.handleDownVoteClick = this.handleDownVoteClick.bind(this);
+  // }
+
+  function handleUpVoteClick() {
+    props.voteUp(props.index);
   }
 
-  handleUpVoteClick() {
-    this.setState({count: this.state.count +1});
+  function handleDownVoteClick() {
+    props.voteDown(props.index);
   }
 
-  handleDownVoteClick() {
-    this.setState({count: this.state.count -1});
-  }
-
-  render() {
-    return (
-      <div>
-        {/* <style global jsx>{`
+  
+  return (
+    <div>
+      {/* <style global jsx>{`
           div {
             background-color: white;
           }`}
           </style> */}
-        <h3>{this.props.postText} <button onClick = {this.handleUpVoteClick}>Upvote</button> <button onClick = {this.handleDownVoteClick}>Downvote</button></h3> 
-        <p>{this.state.count}</p>
-        <hr/>
-      </div>
-    );
-  }  
+      <h3>{props.postText} <button onClick = {handleUpVoteClick}>Upvote</button> <button onClick = {handleDownVoteClick}>Downvote</button></h3> 
+      <p>{props.votes}</p>
+      <hr/>
+    </div>
+  );
 }
 
 Post.propTypes = {
   postText: PropTypes.string,
   votes: PropTypes.number,
+  voteUp: PropTypes.func,
+  voteDown: PropTypes.func,
+  index: PropTypes.number
 };
 
 export default Post;

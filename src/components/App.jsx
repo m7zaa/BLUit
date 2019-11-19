@@ -12,13 +12,27 @@ class App extends React.Component {
     super(props);
     this.state = {
       masterPostList: [],
-      
     };
     this.handleAddingNewPostToList = this.handleAddingNewPostToList.bind(this);
+    this.handleUpVoteClick = this.handleUpVoteClick.bind(this);
+    this.handleDownVoteClick = this.handleDownVoteClick.bind(this);
   }
+
+  handleUpVoteClick(index) {
+    var newMasterPostList = this.state.masterPostList;
+    newMasterPostList[index].votes ++;
+    this.setState({ masterPostList: newMasterPostList}); 
+  }
+
+  handleDownVoteClick(index) {
+    console.log(this.state.masterPostList);
+    var newMasterPostList = this.state.masterPostList;
+    newMasterPostList[index].votes  --;
+    this.setState({ masterPostList: newMasterPostList});
+  }
+
+
   handleAddingNewPostToList(newPost) {
-    console.log(newPost);
-    console.log(this.newMasterPostList)
     var newMasterPostList = this.state.masterPostList.slice();
     newMasterPostList.push(newPost);
     this.setState({ masterPostList: newMasterPostList });
@@ -30,7 +44,7 @@ class App extends React.Component {
         <Header/>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path='/forum' render={() => <PostList postList={this.state.masterPostList} />} />
+          <Route exact path='/forum' render={() => <PostList postList={this.state.masterPostList} voteUp={this.handleUpVoteClick} voteDown={this.handleDownVoteClick}/>} />
           <Route path='/newpost' render={() => <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />} />
         </Switch>
       </div>

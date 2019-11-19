@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   handleDownVoteClick(index) {
-    console.log(this.state.masterPostList);
     var newMasterPostList = this.state.masterPostList;
     newMasterPostList[index].votes  --;
     this.setState({ masterPostList: newMasterPostList});

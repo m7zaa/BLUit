@@ -3,7 +3,8 @@ import Post from './Post';
 import PropTypes from 'prop-types';
 
 function PostList(props){
-  
+  //sorts by votes
+  props.postList.sort((a, b) => b.votes - a.votes);
   return (
     <div>
       <hr/>

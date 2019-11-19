@@ -11,12 +11,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterPostList: []
+      masterPostList: [],
+      
     };
     this.handleAddingNewPostToList = this.handleAddingNewPostToList.bind(this);
   }
   handleAddingNewPostToList(newPost) {
-    console.log(newPost)
+    console.log(newPost);
+    console.log(this.newMasterPostList)
     var newMasterPostList = this.state.masterPostList.slice();
     newMasterPostList.push(newPost);
     this.setState({ masterPostList: newMasterPostList });
@@ -26,7 +28,7 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-          <Switch>
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path='/forum' render={() => <PostList postList={this.state.masterPostList} />} />
           <Route path='/newpost' render={() => <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />} />

@@ -3,14 +3,13 @@ import Post from './Post';
 import PropTypes from 'prop-types';
 
 function PostList(props){
-  console.log(props.postList);
-  console.log(props);
   
   return (
     <div>
       <hr/>
       {props.postList.map((post) =>
         <Post postText={post.postText}
+          votes={post.votes}
           key={post.id}/>
       )}
     </div>

@@ -4,9 +4,10 @@ import { v4 } from 'uuid';
 
 function NewPostForm(props){
   let _postText = null;
+  let _votes = 0;
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    props.onNewPostCreation({postText: _postText.value, id: v4()});
+    props.onNewPostCreation({postText: _postText.value, votes: _votes, id: v4()});
     _postText.value = '';
 
   }

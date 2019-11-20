@@ -9,7 +9,10 @@ function PostList(props){
     <div>
       <hr/>
       {props.postList.map((post, index) =>
-        <Post postText={post.postText} voteUp={props.voteUp} voteDown={props.voteDown}
+        <Post 
+          postText={post.postText} 
+          voteUp={props.voteUp} 
+          voteDown={props.voteDown}
           votes={post.votes}
           index={index}
           key={post.id}/>
